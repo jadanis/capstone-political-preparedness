@@ -34,7 +34,7 @@
             android:textSize="@dimen/title_text_size"
             app:layout_constraintTop_toTopOf="@id/top"/>
 
-        <!-- TODO: Add Upcoming Election Recycler and Header -->
+        <!-- Add Upcoming Election Recycler and Header -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/upcoming_elecs_list"
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
             android:textSize="@dimen/title_text_size"
             app:layout_constraintTop_toBottomOf="@+id/upcoming_elecs_list" />
 
-        <!-- TODO: Add Saved Election Recycler and Header -->
+        <!-- Add Saved Election Recycler and Header -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/saved_elecs_list"
             android:layout_width="0dp"

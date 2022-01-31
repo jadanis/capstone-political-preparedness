@@ -62,6 +62,6 @@ class ElectionDiffCallback: DiffUtil.ItemCallback<Election>() {
 }
 
 //Create ElectionListener
-class ElectionListener(val clickListener: (elecId: Int) -> Unit){
-    fun onClick(elec: Election) = clickListener(elec.id)
+class ElectionListener(val clickListener: (elec: Election) -> Unit){
+    fun onClick(elec: Election) = clickListener(elec)
 }
