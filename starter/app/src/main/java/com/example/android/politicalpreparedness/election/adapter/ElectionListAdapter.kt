@@ -18,7 +18,7 @@ class ElectionListAdapter(private val clickListener: ElectionListener): ListAdap
         holder: ElectionViewHolder,
         position: Int
     ) {
-        val item = getItem(position)
+        //val item = getItem(position)
         holder.bind(getItem(position)!!, clickListener)
     }
 

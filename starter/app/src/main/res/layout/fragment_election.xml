@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Add node to connect Election ViewModel -->
+    <!--  Add node to connect Election ViewModel -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.election.ElectionsViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,50 +29,69 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="@dimen/default_margin"/>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/default_margin"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/default_margin"/>
+
         <TextView
             android:id="@+id/upcoming_elecs_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
             android:padding="@dimen/default_padding"
             android:text="@string/upcoming_elecs_title_text"
             android:textSize="@dimen/title_text_size"
-            app:layout_constraintTop_toTopOf="@id/top"/>
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintEnd_toStartOf="@id/end"
+            app:layout_constraintTop_toTopOf="@id/top"
+            app:layout_constraintBottom_toTopOf="@id/upcoming_elecs_list"
+           />
 
         <!-- Add Upcoming Election Recycler and Header -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/upcoming_elecs_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/default_margin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/upcoming_elecs_title">
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintEnd_toStartOf="@id/end"
+            app:layout_constraintTop_toBottomOf="@id/upcoming_elecs_title"
+            app:layout_constraintBottom_toTopOf="@id/saved_elecs_title"
+            tools:listitem="@layout/list_item_elections">
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <!-- Add Saved Election Recycler and Header -->
         <TextView
             android:id="@+id/saved_elecs_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
             android:padding="@dimen/default_padding"
             android:text="@string/saved_elecs_title_text"
             android:textSize="@dimen/title_text_size"
-            app:layout_constraintTop_toBottomOf="@+id/upcoming_elecs_list" />
+            app:layout_constraintEnd_toStartOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toBottomOf="@id/upcoming_elecs_list"
+            app:layout_constraintBottom_toTopOf="@id/saved_elecs_list"/>
 
-        <!-- Add Saved Election Recycler and Header -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/saved_elecs_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/default_margin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@id/bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saved_elecs_title">
+            app:layout_constraintEnd_toStartOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toBottomOf="@id/saved_elecs_title">
 
         </androidx.recyclerview.widget.RecyclerView>
 
