@@ -27,12 +27,16 @@ class ElectionsViewModel(context: Context): ViewModel() {
     val savedElections: LiveData<List<Election>>
         get() = _savedElections
 
+    private val _navigateToElection = MutableLiveData<Election>()
+    val navigateToElection: LiveData<Election>
+        get() = _navigateToElection
+
     init {
         getSavedElections()
         getUpcomingElections()
     }
 
-    //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
+    // Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
     private fun getUpcomingElections(){
         viewModelScope.launch {
             try {
@@ -48,6 +52,7 @@ class ElectionsViewModel(context: Context): ViewModel() {
 
     private fun getSavedElections(){
         viewModelScope.launch {
+            Log.i("ElectionsViewModel","getSavedElections() called")
             try {
                 _savedElections.value = database.electionDao.getAllElections().value
             } catch(e: Exception){
@@ -56,6 +61,13 @@ class ElectionsViewModel(context: Context): ViewModel() {
         }
     }
 
-    //TODO: Create functions to navigate to saved or upcoming election voter info
+    //Create functions to navigate to saved or upcoming election voter info
+    fun onElectionClick(election: Election){
+        _navigateToElection.value = election
+    }
+
+    fun onElectionNavigated(){
+        _navigateToElection.value = null
+    }
 
 }

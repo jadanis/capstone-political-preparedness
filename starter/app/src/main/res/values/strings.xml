@@ -5,6 +5,8 @@
     <string name="upcoming_elecs_button_text">UPCOMING ELECTIONS</string>
     <string name="upcoming_elecs_title_text">Upcoming Elections</string>
     <string name="saved_elecs_title_text">Saved Elections</string>
+    <string name="save_button_text">Follow Election</string>
+    <string name="unfollow_button_text">Unfollow Election</string>
 
     <!-- TODO: Add necessary string values -->
 
