@@ -11,27 +11,73 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+       >
 
         <ImageView
             android:id="@+id/representative_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints" />
+            android:layout_margin="@dimen/small_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/ic_profile"
+            app:profileImage="@{representative.official.photoUrl}"
+            />
+        <TextView
+            android:id="@+id/rep_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/representative_photo"
+            tools:text="President of the United States"
+            android:text="@{representative.office.name}"/>
+        <TextView
+            android:id="@+id/rep_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rep_title"
+            app:layout_constraintStart_toStartOf="@id/rep_title"
+            tools:text="Joe Biden
+"
+            android:text="@{representative.official.name}"/>
+        <TextView
+            android:id="@+id/party"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rep_name"
+            app:layout_constraintStart_toStartOf="@id/rep_name"
+            tools:text="Democratic Party"
+            android:text="@{representative.official.party}"/>
         <ImageView
             android:id="@+id/wwwIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"/>
+            android:layout_width="@dimen/icon_side"
+            android:layout_height="@dimen/icon_side"
+            android:layout_margin="@dimen/small_margin"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/facebookIcon"
+            android:src="@drawable/ic_www"/>
         <ImageView
             android:id="@+id/facebookIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"/>
+            android:layout_width="@dimen/icon_side"
+            android:layout_height="@dimen/icon_side"
+            android:layout_margin="@dimen/small_margin"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/twitterIcon"
+            android:src="@drawable/ic_facebook"/>
         <ImageView
             android:id="@+id/twitterIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"/>
+            android:layout_width="@dimen/icon_side"
+            android:layout_height="@dimen/icon_side"
+            android:layout_margin="@dimen/small_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/ic_twitter"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

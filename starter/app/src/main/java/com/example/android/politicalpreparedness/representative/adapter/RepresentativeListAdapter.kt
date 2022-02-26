@@ -3,6 +3,7 @@ package com.example.android.politicalpreparedness.representative.adapter
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,23 +20,36 @@ import com.example.android.politicalpreparedness.representative.model.Representa
 class RepresentativeListAdapter: ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepresentativeViewHolder {
+        Log.i("RepListAdapter","onCreateViewHolder called")
         return RepresentativeViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: RepresentativeViewHolder, position: Int) {
+        Log.i("RepListAdapter","onBindViewHolder called")
         val item = getItem(position)
         holder.bind(item)
+    }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount()
     }
 }
 
 class RepresentativeViewHolder private constructor(val binding: ListItemRepresentativeBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Representative) {
+        Log.i("RepresentativeViewHolder","bind called")
         binding.representative = item
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
 
-        //TODO: Show social links ** Hint: Use provided helper methods
-        //TODO: Show www link ** Hint: Use provided helper methods
+        //Show social links ** Hint: Use provided helper methods
+        item.official.channels?.let{
+            showSocialLinks(it)
+        }
+        //Show www link ** Hint: Use provided helper methods
+        item.official.urls?.let{
+            showWWWLinks(it)
+        }
 
         binding.executePendingBindings()
     }
@@ -90,7 +104,7 @@ class RepresentativeViewHolder private constructor(val binding: ListItemRepresen
 class RepresentativeDiffCallback: DiffUtil.ItemCallback<Representative>() {
     override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
         //TODO: is this the right comparison?
-        return oldItem.office.division == newItem.office.division
+        return oldItem.office == newItem.office && oldItem.official == newItem.official
     }
 
     override fun areContentsTheSame(oldItem: Representative, newItem: Representative): Boolean {
@@ -101,6 +115,6 @@ class RepresentativeDiffCallback: DiffUtil.ItemCallback<Representative>() {
 
 //TODO: Create RepresentativeListener
 //TODO: what type of clickListener?
-class RepresentativeListener(val clickListener: (divistion: Division) -> Unit){
+class RepresentativeListener(val clickListener: (division: Division) -> Unit){
     fun onClick(rep: Representative) = clickListener(rep.office.division)
 }

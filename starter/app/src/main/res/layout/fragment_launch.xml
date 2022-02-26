@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- TODO: Add Button to navigate to representatives. -->
+        <!-- Add Button to navigate to representatives. -->
         <TextView
             android:id="@+id/representative_button"
             android:layout_width="match_parent"

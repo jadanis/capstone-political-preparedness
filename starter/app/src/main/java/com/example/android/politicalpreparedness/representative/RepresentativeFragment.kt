@@ -4,10 +4,19 @@ import android.content.Context
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import java.util.Locale
 
 class DetailFragment : Fragment() {
@@ -16,20 +25,67 @@ class DetailFragment : Fragment() {
         //TODO: Add Constant for Location request
     }
 
-    //TODO: Declare ViewModel
+    //Declare ViewModel
+    private val viewModel: RepresentativeViewModel by lazy {
+        ViewModelProvider(this)
+            .get(RepresentativeViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        //TODO: Establish bindings
+        //Establish bindings
+        val binding: FragmentRepresentativeBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_representative,
+            container,
+            false
+        )
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
-        //TODO: Define and assign Representative adapter
+        //Define and assign Representative adapter
+        val repAdapter = RepresentativeListAdapter()
+        val spinAdapter = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item,resources.getStringArray(R.array.states))
+        binding.representativeList.adapter = repAdapter
+        binding.state.adapter = spinAdapter
 
-        //TODO: Populate Representative adapter
+        //Populate Representative adapter
+        viewModel.representatives.observe(viewLifecycleOwner, Observer {
+            it?.let{
+                Log.i("RepFragment","Let Statement")
+                repAdapter.submitList(it)
+            }
+        })
+
+        viewModel.address.observe(viewLifecycleOwner, Observer {
+            it?.let{
+                viewModel.getRepresentatives(it.toFormattedString())
+            }
+        })
+
+        binding.buttonSearch.setOnClickListener {
+            hideKeyboard()
+            Log.i("RepFragment",binding.addressLine1.text.toString())
+            Log.i("RepFragment",binding.addressLine2.text.toString())
+            Log.i("RepFragment",binding.city.text.toString())
+            //Log.i("RepFragment",it.state)
+            Log.i("RepFragment",binding.zip.text.toString())
+            Log.i("RepFragment","Item position: ${binding.state.selectedItemPosition}")
+            Log.i("RepFragment","Item: ${binding.state.selectedItem}")
+            viewModel.getAddressFromLines(
+                binding.addressLine1.text.toString(),
+                binding.addressLine2.text.toString(),
+                binding.city.text.toString(),
+                binding.state.selectedItem as String,
+                binding.zip.text.toString()
+            )
+        }
 
         //TODO: Establish button listeners for field and location search
-        return null
+
+        return binding.root
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

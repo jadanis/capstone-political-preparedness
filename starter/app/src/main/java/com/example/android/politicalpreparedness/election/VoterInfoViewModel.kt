@@ -40,6 +40,7 @@ class VoterInfoViewModel(private val elecId: Int, private val division: Division
 
     }
 
+    //TODO: JSONAdapter to fix state issue?
     //Add var and methods to populate voter info
     private fun getVoterInfo(){
         viewModelScope.launch {

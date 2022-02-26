@@ -7,7 +7,14 @@
     <string name="saved_elecs_title_text">Saved Elections</string>
     <string name="save_button_text">Follow Election</string>
     <string name="unfollow_button_text">Unfollow Election</string>
+    <string name="search_title_text">Representative Search</string>
+    <string name="line_1">Line 1</string>
+    <string name="line_2_optional">Line 2 (Optional)</string>
+    <string name="city">City</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="use_my_location">USE MY LOCATION</string>
+    <string name="my_representatives">My Representatives</string>
 
-    <!-- TODO: Add necessary string values -->
+    <!-- Add necessary string values -->
 
 </resources>

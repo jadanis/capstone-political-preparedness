@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <!-- Define start -->
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/address_form"/>
+    </ConstraintSet>
+
+    <!-- TODO: Define end -->
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/address_form" app:layout_constraintBottom_toTopOf="parent"/>
+    </ConstraintSet>
+
+    <!-- TODO: Define Transition -->
+    <Transition app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:motionInterpolator="linear">
+        <OnSwipe app:touchAnchorId="@id/address_form"/>
+    </Transition>
+
+</MotionScene>
