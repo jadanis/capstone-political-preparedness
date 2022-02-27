@@ -32,6 +32,10 @@ class ElectionsViewModel(context: Context): ViewModel() {
         get() = _navigateToElection
 
     init {
+        getElections()
+    }
+
+    fun getElections(){
         getSavedElections()
         getUpcomingElections()
     }
@@ -50,7 +54,7 @@ class ElectionsViewModel(context: Context): ViewModel() {
         }
     }
 
-    private fun getSavedElections(){
+    private suspend fun getSavedElections(){
         viewModelScope.launch {
             Log.i("ElectionsViewModel","getSavedElections() called")
             try {

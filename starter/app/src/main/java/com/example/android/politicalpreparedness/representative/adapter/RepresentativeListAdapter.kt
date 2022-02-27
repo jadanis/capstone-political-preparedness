@@ -103,7 +103,7 @@ class RepresentativeViewHolder private constructor(val binding: ListItemRepresen
 //Create RepresentativeDiffCallback
 class RepresentativeDiffCallback: DiffUtil.ItemCallback<Representative>() {
     override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
-        //TODO: is this the right comparison?
+        //is this the right comparison?
         return oldItem.office == newItem.office && oldItem.official == newItem.official
     }
 
@@ -111,10 +111,4 @@ class RepresentativeDiffCallback: DiffUtil.ItemCallback<Representative>() {
         return oldItem == newItem
     }
 
-}
-
-//TODO: Create RepresentativeListener
-//TODO: what type of clickListener?
-class RepresentativeListener(val clickListener: (division: Division) -> Unit){
-    fun onClick(rep: Representative) = clickListener(rep.office.division)
 }

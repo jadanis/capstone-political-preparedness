@@ -16,10 +16,12 @@ class RepresentativeViewModel: ViewModel() {
     val representatives: LiveData<List<Representative>>
         get() = _representatives
 
-    val address = MutableLiveData<Address>()
+    private val _address = MutableLiveData<Address>()
+    val address: LiveData<Address>
+        get() = _address
 
 
-    //TODO: change init
+    // change init
 //    init{
 //        address.value = Address("498 Turner Street","","Auburn","Maine","04210")
 //        val strAddr = address.value?.toFormattedString() ?: ""
@@ -47,11 +49,14 @@ class RepresentativeViewModel: ViewModel() {
 
      */
 
-    //TODO: Create function get address from geo location
+    //Create function get address from geo location
+    fun getAddressFromLocation(location: Address){
+        _address.value = location
+    }
 
     //Create function to get address from individual fields
     fun getAddressFromLines(line1: String, line2: String? = null, city: String, state: String, zip: String) {
-        address.value = Address(line1,line2,city,state,zip)
+        _address.value = Address(line1,line2,city,state,zip)
     }
 
 }
