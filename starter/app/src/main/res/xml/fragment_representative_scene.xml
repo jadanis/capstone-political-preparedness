@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
 
 
 
@@ -18,7 +19,9 @@
     <Transition app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/end"
         app:motionInterpolator="linear">
-        <OnSwipe app:touchAnchorId="@id/address_form"/>
+        <OnSwipe
+            app:touchAnchorId="@id/address_form"
+            motion:dragDirection="dragUp"/>
     </Transition>
 
 </MotionScene>
