@@ -42,8 +42,7 @@ class ElectionsFragment: Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        //TODO: Link elections to voter info
-
+        //Link elections to voter info
         //Initiate recycler adapters
         val listener = ElectionListener { elec ->
             findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(elec.id,elec.division))
@@ -75,6 +74,10 @@ class ElectionsFragment: Fragment() {
         return binding.root
     }
 
-    //TODO: Refresh adapters when fragment loads
 
+    //Refresh adapters when fragment loads
+//    override fun onResume() {
+//        super.onResume()
+//        viewModel.getElections()
+//    }
 }

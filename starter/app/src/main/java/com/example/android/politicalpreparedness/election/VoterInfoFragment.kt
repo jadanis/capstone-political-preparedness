@@ -1,5 +1,7 @@
 package com.example.android.politicalpreparedness.election
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
@@ -10,6 +12,7 @@ import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import kotlinx.android.synthetic.main.fragment_launch.*
+import retrofit2.http.Url
 
 class VoterInfoFragment : Fragment() {
 
@@ -39,16 +42,29 @@ class VoterInfoFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        //TODO: Populate voter info -- hide views without provided data.
+        //Populate voter info -- hide views without provided data.
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
         */
 
 
-        //TODO: Handle loading of URLs
+        //Handle loading of URLs
+        viewModel.locationUrl.observe(viewLifecycleOwner, Observer {
+            it?.let{ url ->
+                binding.stateLocations.visibility = View.VISIBLE
+                binding.stateLocations.setOnClickListener { navigateToURL(url) }
+            }
+        })
 
-        //TODO: Handle save button UI state
-        //TODO: cont'd Handle save button clicks
+        viewModel.ballotUrl.observe(viewLifecycleOwner, Observer {
+            it?.let{ url ->
+                binding.stateBallot.visibility = View.VISIBLE
+                binding.stateBallot.setOnClickListener { navigateToURL(url) }
+            }
+        })
+
+        //Handle save button UI state
+        //cont'd Handle save button clicks
         viewModel.savedElection.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if(!it) {
@@ -65,6 +81,10 @@ class VoterInfoFragment : Fragment() {
 
     }
 
-    //TODO: Create method to load URL intents
+    //Create method to load URL intents
+    private fun navigateToURL(url: String){
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
 
 }
