@@ -17,12 +17,7 @@
         motion:ignore="MotionLayoutInvalidSceneFileReference"
         app:layoutDescription="@xml/fragment_representative_scene">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/address_form"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+
             <!--Add visual styling and content -->
             <TextView
                 android:id="@+id/search_title"
@@ -126,14 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/button_search" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/representatives_section"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/address_form" >
+
             <!-- Add visual styling and content -->
             <TextView
                 android:id="@+id/representative_title"
@@ -144,13 +133,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/button_location"/>
 
             <!-- Add Representatives RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/representative_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/representative_title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -169,6 +158,6 @@
 <!--                motion:visibilityMode="ignore"-->
 <!--                app:layout_constraintTop_toBottomOf="@id/representative_title"-->
 <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

@@ -7,12 +7,74 @@
 
     <!-- Define start -->
     <ConstraintSet android:id="@+id/start">
-        <Constraint android:id="@+id/address_form"/>
+        <Constraint android:id="@+id/search_title"/>
     </ConstraintSet>
 
     <!-- TODO: Define end -->
     <ConstraintSet android:id="@+id/end">
-        <Constraint android:id="@id/address_form" app:layout_constraintBottom_toTopOf="parent"/>
+        <Constraint android:id="@+id/search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/address_line_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/address_line_1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/address_line_2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/state"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/zip"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/button_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint android:id="@+id/button_location"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
     </ConstraintSet>
 
     <!-- TODO: Define Transition -->
@@ -20,7 +82,8 @@
         app:constraintSetEnd="@+id/end"
         app:motionInterpolator="linear">
         <OnSwipe
-            app:touchAnchorId="@id/address_form"
+            app:touchAnchorId="@+id/representative_list"
+            app:onTouchUp="stop"
             motion:dragDirection="dragUp"/>
     </Transition>
 
