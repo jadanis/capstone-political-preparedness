@@ -12,6 +12,7 @@
 
     <!-- Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/representative_container"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         motion:ignore="MotionLayoutInvalidSceneFileReference"
@@ -40,7 +41,7 @@
                 android:inputType="textPostalAddress"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_title"
-                android:text="@{viewModel.address.line1}"/>
+                android:text="@={viewModel.line1}"/>
 
             <!-- Add data binding value -->
             <!-- Add visual styling and content -->
@@ -53,7 +54,7 @@
                 android:inputType="textPostalAddress"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/address_line_1"
-                android:text="@{viewModel.address.line2}"/>
+                android:text="@={viewModel.line2}"/>
 
             <!-- Add data binding value -->
             <!-- Add visual styling and content -->
@@ -67,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/state"
                 app:layout_constraintTop_toBottomOf="@id/address_line_2"
-                android:text="@{viewModel.address.city}"/>
+                android:text="@={viewModel.city}"/>
 
             <!-- Add default values from provided resources  -->
             <!-- Add data binding value -->
@@ -83,7 +84,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/city"
                 app:layout_constraintBottom_toBottomOf="@id/city"
-                app:stateValue="@{viewModel.address.state}" />
+                app:stateValue="@{viewModel.state}" />
 
             <!-- Add data binding value -->
             <!-- Add visual styling and content -->
@@ -98,7 +99,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/city"
                 app:layout_constraintTop_toBottomOf="@id/city"
-                android:text="@{viewModel.address.zip}"/>
+                android:text="@={viewModel.zip}"/>
 
             <!-- Add visual styling and label -->
             <Button

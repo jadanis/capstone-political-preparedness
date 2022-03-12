@@ -20,6 +20,11 @@ class RepresentativeViewModel: ViewModel() {
     val address: LiveData<Address>
         get() = _address
 
+    val line1 = MutableLiveData<String>()
+    val line2 = MutableLiveData<String>()
+    val city = MutableLiveData<String>()
+    val state = MutableLiveData<String>()
+    val zip = MutableLiveData<String>()
 
     // change init
 //    init{
@@ -55,8 +60,14 @@ class RepresentativeViewModel: ViewModel() {
     }
 
     //Create function to get address from individual fields
-    fun getAddressFromLines(line1: String, line2: String? = null, city: String, state: String, zip: String) {
-        _address.value = Address(line1,line2,city,state,zip)
+    fun getAddressFromLines( state: String) {
+        _address.value = Address(
+            line1.value ?: "",
+            line2.value ?: "",
+            city.value ?: "",
+            state,
+            zip.value ?: ""
+        )
     }
 
 }

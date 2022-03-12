@@ -37,19 +37,28 @@ class DetailFragment : Fragment() {
             .get(RepresentativeViewModel::class.java)
     }
 
+    private lateinit var binding: FragmentRepresentativeBinding
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         //Establish bindings
-        val binding: FragmentRepresentativeBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_representative,
             container,
             false
         )
+        //Per Submission feedback
+        binding.executePendingBindings()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        //Per Submission feedback
+        //Mentor article: https://knowledge.udacity.com/questions/809749
+        savedInstanceState?.getInt("motionLayout")?.let{
+            binding.representativeContainer.transitionToState(it)
+        }
 
         //Define and assign Representative adapter
         val repAdapter = RepresentativeListAdapter()
@@ -81,13 +90,9 @@ class DetailFragment : Fragment() {
             Log.i("RepFragment",binding.zip.text.toString())
             Log.i("RepFragment","Item position: ${binding.state.selectedItemPosition}")
             Log.i("RepFragment","Item: ${binding.state.selectedItem}")
-            viewModel.getAddressFromLines(
-                binding.addressLine1.text.toString(),
-                binding.addressLine2.text.toString(),
-                binding.city.text.toString(),
-                binding.state.selectedItem as String,
-                binding.zip.text.toString()
-            )
+            //Can't seem to get BindingAdapter and the Spinner to play nice
+            // But this seems to preserve the state nevertheless
+            viewModel.getAddressFromLines(binding.state.selectedItem as String)
         }
 
         binding.buttonLocation.setOnClickListener{
@@ -96,6 +101,12 @@ class DetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    //Mentor article: https://knowledge.udacity.com/questions/809749
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("motionLayout",binding.representativeContainer.currentState)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
