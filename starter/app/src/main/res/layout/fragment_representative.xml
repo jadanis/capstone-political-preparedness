@@ -10,7 +10,7 @@
             type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
     </data>
 
-    <!-- TODO: Add motion scene to hide form on vertical scroll. -->
+    <!-- Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/address_line_2"
                 android:hint="@string/line_2_optional"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:inputType="textPostalAddress"
                 app:layout_constraintStart_toStartOf="parent"
