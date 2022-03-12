@@ -54,11 +54,7 @@ class DetailFragment : Fragment() {
         binding.executePendingBindings()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        //Per Submission feedback
-        //Mentor article: https://knowledge.udacity.com/questions/809749
-        savedInstanceState?.getInt("motionLayout")?.let{
-            binding.representativeContainer.transitionToState(it)
-        }
+
 
         //Define and assign Representative adapter
         val repAdapter = RepresentativeListAdapter()
@@ -100,13 +96,25 @@ class DetailFragment : Fragment() {
             getLocation()
         }
 
+        savedInstanceState?.getParcelable<Address>("address")?.let{
+            viewModel.getAddressFromLocation(it)
+        }
+
+        //Per Submission feedback
+        //Mentor article: https://knowledge.udacity.com/questions/809749
+        savedInstanceState?.getInt("motionLayout")?.let{
+            binding.representativeContainer.transitionToState(it)
+        }
+
         return binding.root
     }
 
     //Mentor article: https://knowledge.udacity.com/questions/809749
     override fun onSaveInstanceState(outState: Bundle) {
+        Log.i("RepresentativeFragment","onSavedInstanceState called")
         super.onSaveInstanceState(outState)
         outState.putInt("motionLayout",binding.representativeContainer.currentState)
+        outState.putParcelable("address",binding.viewModel?.address?.value)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
