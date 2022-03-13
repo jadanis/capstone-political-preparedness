@@ -3,6 +3,8 @@ package com.example.android.politicalpreparedness.network.models
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+//Parcelize for onSaveInstanceState
+
 @Parcelize
 data class Address (
         val line1: String,

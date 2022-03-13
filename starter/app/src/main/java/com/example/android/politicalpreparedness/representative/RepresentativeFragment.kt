@@ -96,6 +96,7 @@ class DetailFragment : Fragment() {
             getLocation()
         }
 
+        //Fix Submission 2 feedback?
         savedInstanceState?.getParcelable<Address>("address")?.let{
             viewModel.getAddressFromLocation(it)
         }
@@ -114,6 +115,7 @@ class DetailFragment : Fragment() {
         Log.i("RepresentativeFragment","onSavedInstanceState called")
         super.onSaveInstanceState(outState)
         outState.putInt("motionLayout",binding.representativeContainer.currentState)
+        //Fix Submission 2 feedback?
         outState.putParcelable("address",binding.viewModel?.address?.value)
     }
 
